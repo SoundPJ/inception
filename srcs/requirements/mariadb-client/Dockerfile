@@ -1,13 +1,13 @@
 # Using the penultimate stable version of Debian
 FROM debian:bullseye
 
-COPY test .
+# COPY test .
 RUN apt-get update \
 	&& apt-get upgrade \
-	&& apt-get install -y mariadb-server
+	&& apt-get install -y mariadb-client
 
 # RUN apt-get install -y service
-RUN service mariadb restart
+# RUN service mariadb restart
 	# && mysql_secure_installation
 
 # 	&& rm -rf /var/lib/apt/lists/*
@@ -16,10 +16,8 @@ RUN service mariadb restart
 
 # EXPOSE 3306
 
-RUN chmod +x test
+# RUN chmod +x test
 
-RUN ./test
+# RUN ./test
 
-CMD ["mysqld"]
-
-# CMD [ "sleep", "infinity" ]
+CMD ["sleep", "infinity"]
