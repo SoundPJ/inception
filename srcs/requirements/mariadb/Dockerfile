@@ -1,25 +1,26 @@
 # Using the penultimate stable version of Debian
-FROM debian:bullseye
+FROM debian:11
 
-COPY test .
-RUN apt-get update \
-	&& apt-get upgrade \
-	&& apt-get install -y mariadb-server
+# COPY test.sh /docker-entrypoint-initdb.d/
+COPY test.sh /bin/
 
-# RUN apt-get install -y service
+RUN apt-get update && apt-get upgrade
+
+RUN apt-get install -y mariadb-server
+
 RUN service mariadb restart
-	# && mysql_secure_installation
 
-# 	&& rm -rf /var/lib/apt/lists/*
+# RUN mysql_secure_installation
 
-# RUN mkdir -p /var/lib/mysql
+COPY 50-server.cnf etc/mysql/mariadb.conf.d/
 
 # EXPOSE 3306
 
-RUN chmod +x test
+# RUN chmod +x /docker-entrypoint-initdb.d/test.sh
+RUN chmod +x /bin/test.sh
 
-RUN ./test
+RUN bash /bin/test.sh
 
 CMD ["mysqld"]
 
-# CMD [ "sleep", "infinity" ]
+# CMD ["sleep", "infinity"]
