@@ -3,24 +3,30 @@
 touch hello
 
 # Database credentials
-DB_USER="your_db_user"
-DB_PASS="your_db_password"
-DB_NAME="your_db_name"
+MYSQL_ROOT_USER="root"
+MYSQL_ROOT_PASSWORD="root_password"
+MYSQL_USER="user"
+MYSQL_PASSWORD="user_password"
+MYSQL_ADMIN="master"
+MYSQL_ADMIN_PASSWORD="master_password"
+DB_NAME="db"
 
 # MySQL/MariaDB root user credentials
-ROOT_USER="root"
-ROOT_PASS="root_password"
 
 service mariadb restart
 
 # Create user and grant privileges
-mysql -u $ROOT_USER -p$ROOT_PASS << EOF
+mysql -u $MYSQL_ROOT_USER -p$MYSQL_ROOT_PASSWORD << EOF
 CREATE DATABASE IF NOT EXISTS $DB_NAME;
-CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
-GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'%';
+CREATE USER IF NOT EXISTS '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';
+GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ADMIN_USER'@'%';
+CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, EXECUTE ON $DB_NAME.* TO '$MYSQL_USER'@'%';
+GRANT SHOW DATABASES ON *.* TO '$MYSQL_USER'@'%';
+GRANT USAGE ON *.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-echo "User '$DB_USER' created and privileges granted for database '$DB_NAME'."
+echo "User '$MYSQL_USER1' created and privileges granted for database '$DB_NAME'."
 
 touch bye
