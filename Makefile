@@ -1,34 +1,51 @@
-bmrd:
-	docker build -t mariadbd srcs/requirements/mariadb/
-
-bmr:
-	docker build -t mariadb srcs/requirements/mariadb-client/
-
 list:
 	docker ps -a
 	docker image ls
 	docker network ls
 	docker volume ls
 
-# Don't forget to change volume mount path 
-rund:
-	docker run -dit --rm --name mariadbd --network docker-network -p 3306 -v ./mariadb_data:/var/lib/mysql mariadbd
+bmrd:
+	docker build -t mariadbd srcs/requirements/mariadb/
+
+bmr:
+	docker build -t mariadb srcs/requirements/mariadb-client/
+
+bwp:
+	docker build -t wordpress srcs/requirements/wordpress/
+
+rwp:
+	docker run -dit --rm --name wordpress wordpress
+	docker exec -it wordpress bash
+
+# Don't forget to change volume mount path
+rmrd:
+# docker run -dit --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
+	docker run -it --init --memory=512m --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
 	docker exec -it mariadbd bash
 
-run:
+rmr:
 	docker run -dit --rm --name mariadb --network docker-network -p 3306 mariadb
 	docker exec -it mariadb bash
 
-rmd:
+rmmrd:
 	docker stop mariadbd
+	docker rm -f mariadbd
 
-rm:
+rmmr:
 	docker stop mariadb
+	docker rm -f mariadb
 
-irmd:
+rmwp:
+	docker stop wordpress
+	docker rm -f wordpress
+
+irmmrd:
 	docker image rm mariadbd
 
-irm:
+irmmr:
 	docker image rm mariadb
 
-.PHONY: bmrd bmr list rund rmd irmd run rm irm
+irmwp:
+	docker image rm mariadb
+
+.PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-touch hello
-
 # Database credentials
 MYSQL_ROOT_USER="root"
 MYSQL_ROOT_PASSWORD="root_password"
@@ -11,7 +9,7 @@ MYSQL_ADMIN="master"
 MYSQL_ADMIN_PASSWORD="master_password"
 DB_NAME="WordPress"
 
-# MySQL/MariaDB root user credentials
+sleep 5
 
 service mariadb restart
 
@@ -27,7 +25,6 @@ GRANT USAGE ON *.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
+mysqladmin -u $MYSQL_ROOT_USER shutdown
 
 echo "User '$MYSQL_USER1' created and privileges granted for database '$DB_NAME'."
-
-touch bye
