@@ -20,7 +20,9 @@ rwp:
 # Don't forget to change volume mount path
 rmrd:
 # docker run -dit --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
-	docker run -it --init --memory=512m --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
+# docker run -it --name mariadbd --network docker-network -v $(PWD)/mariadb_data:/var/lib/mysql mariadbd
+# docker run -it --rm --name mariadbd --network docker-network mariadbd
+	docker run -it --rm --name mariadbd --network docker-network -v sound:/var/lib/mysql mariadbd
 	docker exec -it mariadbd bash
 
 rmr:
@@ -46,6 +48,6 @@ irmmr:
 	docker image rm mariadb
 
 irmwp:
-	docker image rm mariadb
+	docker image rm wordpress
 
 .PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp

@@ -9,8 +9,6 @@ MYSQL_ADMIN="master"
 MYSQL_ADMIN_PASSWORD="master_password"
 DB_NAME="WordPress"
 
-sleep 5
-
 service mariadb restart
 
 # Create user and grant privileges
@@ -25,6 +23,7 @@ GRANT USAGE ON *.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
-mysqladmin -u $MYSQL_ROOT_USER shutdown
+chmod 777 /var/lib/mysql
 
-echo "User '$MYSQL_USER1' created and privileges granted for database '$DB_NAME'."
+# chown -R mys:root /var/lib/mysql
+

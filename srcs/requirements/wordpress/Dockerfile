@@ -26,6 +26,3 @@ RUN tar -xzvf /tmp/wordpress.tar.gz -C /var/www/html
 
 # Expose port 80
 EXPOSE 80
-
-# Start Apache
-CMD ["apache2ctl", "-D", "FOREGROUND"]

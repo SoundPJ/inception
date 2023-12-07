@@ -1,0 +1,18 @@
+services:
+  mariadb:
+    image: mariadbd
+    command: "mysqld"
+    working_dir: srcs/requirements/mariadb/
+    container_name: mariadbd
+    networks:
+      - docker-network
+    volumes:
+      - sound:var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  sound:
+
+networks:
+  docker-network:
