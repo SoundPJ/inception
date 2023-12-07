@@ -22,7 +22,7 @@ rmrd:
 # docker run -dit --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --name mariadbd --network docker-network -v $(PWD)/mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --rm --name mariadbd --network docker-network mariadbd
-	docker run -it --rm --name mariadbd --network docker-network -v sound:/var/lib/mysql mariadbd
+	docker run -it --rm --name mariadbd --network docker-network -v $(pwd)/mariadb_data:/var/lib/mysql mariadbd
 	docker exec -it mariadbd bash
 
 rmr:
