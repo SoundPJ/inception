@@ -23,9 +23,9 @@ GRANT USAGE ON *.* TO '$MYSQL_USER'@'%';
 FLUSH PRIVILEGES;
 EOF
 
- chmod 777 /var/lib/mysql
-chown -R mysql:mysql /var/run/mysqld
-chmod 777 /var/run/mysqld
+# chmod 777 /var/lib/mysql
+# chown -R mysql:mysql /var/run/mysqld
+# chmod 777 /var/run/mysqld
 
 # chown -R mys:root /var/lib/mysql
 
