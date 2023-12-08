@@ -1,8 +1,8 @@
 list:
-	docker ps -a
-	docker image ls
 	docker network ls
 	docker volume ls
+	docker ps -a
+	docker image ls
 
 bmrd:
 	docker build -t mariadbd srcs/requirements/mariadb/
@@ -13,6 +13,13 @@ bmr:
 bwp:
 	docker build -t wordpress srcs/requirements/wordpress/
 
+bnx:
+	docker build -t nginx srcs/requirements/nginx
+
+rnx:
+	docker run -dit --rm --name nginx --network docker-network  nginx
+	docker exec -it nginx bash
+
 rwp:
 	docker run -dit --rm --name wordpress wordpress
 	docker exec -it wordpress bash
@@ -22,7 +29,7 @@ rmrd:
 # docker run -dit --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --name mariadbd --network docker-network -v $(PWD)/mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --rm --name mariadbd --network docker-network mariadbd
-	docker run -it --rm --name mariadbd --network docker-network -v $(pwd)/mariadb_data:/var/lib/mysql mariadbd
+	docker run -it --rm --name mariadbd --network docker-network -v /home/pjerddee/data/database:/var/lib/mysql mariadbd
 	docker exec -it mariadbd bash
 
 rmr:
@@ -50,4 +57,4 @@ irmmr:
 irmwp:
 	docker image rm wordpress
 
-.PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp
+.PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp bnx

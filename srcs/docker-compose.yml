@@ -1,25 +1,17 @@
 services:
   mariadb:
     image: mariadbd
-    build: ./requirements/mariadb/
-    # command: ["mysqld"]
-    # working_dir: srcs/requirements/mariadb/
-    container_name: mariadbd
-    networks:
-      - docker-network
-    volumes:
-      - database:/var/lib/mysql
-    ports:
-      - "3306:3306"
+    working_dir: /home/pjerddee/inception/srcs/requirements/mariadb/
+    volumes: database:/var/lib/mysql
+    networks: docker-network
+    ports: 3306:3306
 
 volumes:
   database:
-    name: database
-    driver: local
     driver_opts:
-      type: none
-      o: "bind"
-      device: /home/pjerddee/inception/srcs/requirements/mariadb/database
+        type: ""
+        o: ""
+        device: "/home/pjerddee/data/database"
 
 networks:
   docker-network:
