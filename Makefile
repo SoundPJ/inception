@@ -21,7 +21,7 @@ rnx:
 	docker exec -it nginx bash
 
 rwp:
-	docker run -dit --rm --name wordpress wordpress
+	docker run -dit --rm --name wordpress --network docker-network wordpress
 	docker exec -it wordpress bash
 
 # Don't forget to change volume mount path
@@ -29,11 +29,11 @@ rmrd:
 # docker run -dit --name mariadbd --network docker-network -p 3306:3306 -v ./mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --name mariadbd --network docker-network -v $(PWD)/mariadb_data:/var/lib/mysql mariadbd
 # docker run -it --rm --name mariadbd --network docker-network mariadbd
-	docker run -it --rm --name mariadbd --network docker-network -v /home/pjerddee/data/database:/var/lib/mysql mariadbd
-	docker exec -it mariadbd bash
+	docker run -dit --rm --name mariadbd --network docker-network -v /home/pjerddee/data/database:/var/lib/mysql mariadbd
+	docker exec -dit mariadbd bash
 
 rmr:
-	docker run -dit --rm --name mariadb --network docker-network -p 3306 mariadb
+	docker run -dit --rm --name mariadb --network docker-network mariadb
 	docker exec -it mariadb bash
 
 rmmrd:
