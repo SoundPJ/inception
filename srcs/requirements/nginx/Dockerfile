@@ -6,4 +6,8 @@ RUN apt install nginx -y
 
 RUN apt install openssl -y
 
-CMD service nginx start && sleep infinity
+RUN openssl req -nodes -x509 -newkey rsa:4096 -keyout private.key -out server.crt -days 365 -subj "/C=TH/ST=Bangkok/O=42Bangkok/CN=pjerddee.42.fr"
+
+COPY $(PWD)/conf/nginx.conf .
+
+CMD service nginx start && bash

@@ -7,9 +7,9 @@ RUN apt-get install -y mariadb-server
 
 COPY test.sh .
 
-# COPY 50-server.cnf etc/mysql/mariadb.conf.d/
+COPY 50-server.cnf etc/mysql/mariadb.conf.d/
 
-EXPOSE 3306
+# EXPOSE 3306
 
 RUN chmod +x ./test.sh
 

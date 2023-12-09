@@ -1,28 +1,20 @@
-# Using the penultimate stable version of Debian
-FROM debian:11
+FROM debian:bullseye
 
-RUN apt-get update && apt-get upgrade
+RUN apt update -y && apt upgrade -y
 
-RUN apt-get install -y apache2 php libapache2-mod-php php-mysql unzip wget
+RUN apt install -y php
 
-# Download and install WordPress
-WORKDIR /var/www/html
-RUN wget https://wordpress.org/latest.tar.gz && \
-    tar -xzvf latest.tar.gz --strip-components=1 && \
-    rm latest.tar.gz
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 
-# Set environment variables
-ENV WORDPRESS_DB_HOST=mariadbd
-ENV WORDPRESS_DB_USER=your_db_user
-ENV WORDPRESS_DB_PASSWORD=your_db_password
-ENV WORDPRESS_DB_NAME=your_db_name
+RUN chmod +x wp-cli.phar
 
-# Set up Apache configurations
-RUN a2enmod rewrite && \
-    chown -R www-data:www-data /var/www/html && \
-    chmod -R 755 /var/www/html
+RUN mv wp-cli.phar /usr/local/bin/wp-cli
 
-RUN tar -xzvf /tmp/wordpress.tar.gz -C /var/www/html
+RUN wp-cli core download --allow-root
 
-# Expose port 80
-EXPOSE 80
+# RUN wp-cli config create --dbname=$DB_NAME --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --locale=en_DB --allow-root
+
+RUN wp-cli core install --url=$DOMAIN_NAME --title=$BLOG_TITLE --admin_user=$MYSQL_ADMIN --admin_password=$MYSQL_ADMIN_PASSWORD --allow-root
+
+CMD [ "sleep", "infinity" ]
+
