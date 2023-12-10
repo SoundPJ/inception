@@ -21,8 +21,6 @@ services:
       context: /home/pjerddee/inception/srcs/requirements/wordpress/
     networks:
       - docker-network
-    env_file:
-      - ./.env
     environment:
       - MYSQL_ADMIN=${MYSQL_ADMIN}
       - MYSQL_ADMIN_PASSWORD=${MYSQL_ADMIN_PASSWORD}
