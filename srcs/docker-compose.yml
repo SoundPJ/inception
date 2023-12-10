@@ -17,6 +17,18 @@ services:
       - docker-network
     env_file:
       - ./.env
+    environment:
+      - MYSQL_ROOT_USER=${MYSQL_ROOT_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ADMIN=${MYSQL_ADMIN}
+      - MYSQL_ADMIN_PASSWORD=${MYSQL_ADMIN_PASSWORD}
+      - MYSQL_ADMIN_EMAIL=${MYSQL_ADMIN_EMAIL}
+      - DB_NAME=${DB_NAME}
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - BLOG_TITLE=${BLOG_TITLE}
+      - HOST_NAME=${HOST_NAME}
     depends_on:
       - mariadb
 volumes:

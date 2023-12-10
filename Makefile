@@ -57,4 +57,7 @@ irmmr:
 irmwp:
 	docker image rm wordpress
 
-.PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp bnx
+irmall:
+	docker image rm $$(docker image ls -q)
+
+.PHONY: list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp bnx irmall
