@@ -9,9 +9,16 @@ services:
       - docker-network
     env_file:
       - ./.env
-    # ports:
-    #   - "3306:3306"
-
+  wordpress:
+    container_name: 'wordpress'
+    build:
+      context: /home/pjerddee/inception/srcs/requirements/wordpress/
+    networks:
+      - docker-network
+    env_file:
+      - ./.env
+    depends_on:
+      - mariadb
 volumes:
   database:
     name: database
