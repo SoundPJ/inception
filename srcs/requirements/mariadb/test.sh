@@ -18,4 +18,3 @@ service mariadb restart
 
 chown -R mysql:mysql /var/lib/mysql
 chmod -R 777 /var/lib/mysql
-

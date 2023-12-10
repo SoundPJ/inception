@@ -3,6 +3,9 @@ all:
 	sudo mkdir -p /home/pjerddee/data/database/
 	docker compose -f ./srcs/docker-compose.yml up
 
+up:
+	docker compose -f ./srcs/docker-compose.yml up
+
 clean:
 	docker compose -f ./srcs/docker-compose.yml down
 
@@ -76,4 +79,4 @@ irmwp:
 irmall:
 	docker image rm $$(docker image ls -q)
 
-.PHONY: all clean fclean re list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp bnx irmall
+.PHONY: all up clean fclean re list bmrd bmr bwp rwp rmrd rmr rmmrd rmmr rmwp irmmrd irmmr irmwp bnx irmall
