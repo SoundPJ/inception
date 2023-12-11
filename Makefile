@@ -10,7 +10,7 @@ clean:
 	docker compose -f ./srcs/docker-compose.yml down
 
 fclean: clean
-	docker image rm srcs-wordpress srcs-mariadb
+	docker image rm srcs-wordpress srcs-mariadb srcs-nginx
 	sudo rm -rf /home/pjerddee/data/
 	docker volume rm database wordpress
 
