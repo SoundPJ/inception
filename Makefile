@@ -13,7 +13,6 @@ fclean: clean
 	docker image rm srcs-wordpress srcs-mariadb
 	sudo rm -rf /home/pjerddee/data/
 	docker volume rm database wordpress
-	docker volume rm database database
 
 re: fclean all
 

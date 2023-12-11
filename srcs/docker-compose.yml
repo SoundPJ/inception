@@ -33,6 +33,18 @@ services:
       - mariadb
     volumes:
       - wordpress:/public_html/blogdemo/
+  nginx:
+    container_name: nginx
+    build:
+      context: /home/pjerddee/inception/srcs/requirements/nginx/
+    networks:
+      - docker-network
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/html/
+    ports:
+      - 443:443
 volumes:
   database:
     name: database
