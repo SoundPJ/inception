@@ -2,12 +2,22 @@
 
 service mariadb restart
 
-mysql_secure_installation << EOF
+#mysql_secure_installation << EOF
+#
+#n
+#y
+#$MYSQL_ROOT_PASSWORD
+#$MYSQL_ROOT_PASSWORD
+#y
+#y
+#y
+#y
+#EOF
 
+mysql_secure_installation << EOF
+$MYSQL_ROOT_PASSWORD
 n
-y
-$MYSQL_ROOT_PASSWORD
-$MYSQL_ROOT_PASSWORD
+n
 y
 y
 y
