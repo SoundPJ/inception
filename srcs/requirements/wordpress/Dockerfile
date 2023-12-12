@@ -1,8 +1,8 @@
 FROM debian:bullseye
 
 # Install
-RUN apt-get update -y && apt-get upgrade -y
-RUN apt-get install -y php php-fpm php-mysql curl wget sendmail
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y php php-fpm php-mysql wget curl
 
 # Copy script to the container
 COPY ./tools/wordpress_script.sh .

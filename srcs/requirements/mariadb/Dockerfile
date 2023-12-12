@@ -11,7 +11,7 @@ ARG MYSQL_ADMIN_PASSWORD
 ARG DB_NAME
 
 # Install
-RUN apt-get update && apt-get upgrade
+RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y mariadb-server
 
 # Copy mariadb config file to the container

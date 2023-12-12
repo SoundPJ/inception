@@ -1,7 +1,8 @@
 all:
 	sudo mkdir -p /home/pjerddee/data/wordpress/
 	sudo mkdir -p /home/pjerddee/data/database/
-	docker compose -f ./srcs/docker-compose.yml up --build
+	docker compose -f ./srcs/docker-compose.yml build --no-cache
+	docker compose -f ./srcs/docker-compose.yml up
 
 up:
 	docker compose -f ./srcs/docker-compose.yml up
@@ -10,7 +11,7 @@ clean:
 	docker compose -f ./srcs/docker-compose.yml down
 
 fclean: clean
-	docker image rm srcs-wordpress srcs-mariadb srcs-nginx
+	docker image rm wordpress mariadb nginx
 	sudo rm -rf /home/pjerddee/data/
 	docker volume rm database wordpress
 
