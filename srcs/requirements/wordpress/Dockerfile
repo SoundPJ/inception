@@ -20,4 +20,4 @@ EXPOSE 3306
 EXPOSE 9000
 
 # To run the script
-CMD ["bash", "wordpress_script.sh"]
+ENTRYPOINT ["bash", "wordpress_script.sh"]

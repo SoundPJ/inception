@@ -26,4 +26,4 @@ RUN rm ./mariadb_script.sh
 # Export port 3306 to communicate with wordpress
 EXPOSE 3306
 
-CMD ["mysqld"]
+ENTRYPOINT ["mysqld"]

@@ -17,4 +17,4 @@ EXPOSE 9000
 EXPOSE 443
 
 # To run the container in foreground
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
