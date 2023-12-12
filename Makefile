@@ -1,7 +1,7 @@
 all:
 	sudo mkdir -p /home/pjerddee/data/wordpress/
 	sudo mkdir -p /home/pjerddee/data/database/
-	docker compose -f ./srcs/docker-compose.yml up
+	docker compose -f ./srcs/docker-compose.yml up --build
 
 up:
 	docker compose -f ./srcs/docker-compose.yml up
