@@ -16,7 +16,7 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp-cli
 
-wp-cli core download
+wp-cli core download --allow-root
 
 # Create wordpress config file
 wp-cli config create --dbname=$DB_NAME --dbuser=$MYSQL_ADMIN --dbpass=$MYSQL_ADMIN_PASSWORD --dbhost=$HOST_NAME --locale=en_DB --allow-root
